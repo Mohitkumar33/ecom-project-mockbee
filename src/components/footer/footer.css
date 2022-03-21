@@ -1,0 +1,27 @@
+/************footer started ************/
+
+.footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    background-color: var(--primary-color);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    gap: 2rem;
+}
+
+.footer-info h3 {
+    color: white;
+}
+
+.footer-info div {
+    flex-grow: 1;
+}
+
+.footer-copyright {
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--footer-copyright-darkgray);
+    color: white;
+}

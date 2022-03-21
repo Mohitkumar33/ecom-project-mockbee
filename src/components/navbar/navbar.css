@@ -1,0 +1,126 @@
+/* @import url(https://img.icons8.com/ios-glyphs/30/000000/frequency-f.png); */
+:root {
+    --primary-color: #808080;
+    --gray-light: #f0f0f0;
+    --button-blue-color: #4e94f0;
+    --red-marker-icon: #e64c4c;
+    --very-light-gray: #e2e0e0bd;
+    --footer-copyright-darkgray: #5a5959;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    width: 100%;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  /*************nav started****************/
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 1px solid var(--primary-color);
+    flex-wrap: wrap;
+  }
+  
+  .brand-name h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .brand-name-link {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .input-field {
+    position: relative;
+  }
+  
+  .input-field input {
+    padding-left: 30px;
+    width: 25rem;
+    height: 1.8rem;
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .fa-search {
+    position: absolute;
+    left: 6px;
+    top: 7px;
+    color: var(--primary-color);
+    height: 16px;
+    width: 16px;
+  }
+  
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  
+  .nav-icons * {
+    /* here star means all the child of the selected class*/
+    margin: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .nav-login{
+    padding: 8px 12px;
+    border-radius: 2px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .nav-signup {
+    padding: 8px 12px;
+    border-radius: 2px;
+    border: 1px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .nav-heart-icon {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .nav-cart-icon {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .marker-icon {
+    position: absolute;
+    right: -3px;
+    top: -4px;
+    padding: 1px 4px;
+    border-radius: 15px;
+    background-color: var(--red-marker-icon);
+    color: white;
+  }
+  
+  .nav-icons svg {
+    height: 2.18rem;
+    width: 2.18rem;
+  }
+  
+  /*************nav end****************/
+  

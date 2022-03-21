@@ -1,0 +1,37 @@
+/*************different started****************/
+.arrivals {
+    margin-left: 8%;
+    margin-right: 8%;
+    display: flex;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.summer-arrivals,
+.winter-arrivals {
+    height: 15rem;
+    width: 31rem;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+
+}
+
+.summer-image img,
+.winter-image img {
+    width: 10rem;
+    height: 10.5rem;
+    background-color: white;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+
+.summer-arrivals-info,
+.winter-arrivals-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/*************different arrivals ends****************/

@@ -1,16 +1,19 @@
 import "./home.css";
 import { Link } from "react-router-dom";
+import { Navbar } from "../components/navbar/Navbar";
+import { Footer } from "../components/footer/Footer";
+import { DealsOfTheDay } from "../components/homePage/DealsOfTheDay";
+import { Advertisements } from "../components/homePage/Advertisements";
+import { Arrivals } from "../components/homePage/Arrivals";
 
 const Home = () => {
   return (
     <>
-      <p>This is Home</p>
-      <Link to="/">Home</Link>||
-      <Link to="/products">products</Link>||
-      <Link to="/wishlist">wishlist</Link>||
-      <Link to="/cart">Cart</Link>||
-      <Link to="/login">Login</Link>||
-      <Link to="/signup">Signup</Link>
+      <Navbar/>
+      <DealsOfTheDay/>
+      <Advertisements/>
+      <Arrivals/>
+      <Footer/>
     </>
   );
 };

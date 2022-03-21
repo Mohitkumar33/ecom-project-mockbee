@@ -67,3 +67,7 @@ button:hover {
 }
 
 /*************card end****************/
+a {
+    text-decoration: none;
+    color: black;
+}

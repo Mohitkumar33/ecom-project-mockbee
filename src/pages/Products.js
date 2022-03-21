@@ -16,9 +16,8 @@ import {
 
 const Products = () => {
   const { productsState } = useProducts();
-//   console.log(productsState)
   const { filterState, filterDispatch } = useFilters();
-  console.log(productsState.productsState)
+  console.log(productsState.productsState);
   const dataWithoutSearch = filterByDiscount(
     filterState.discount,
     filterByGender(
@@ -31,15 +30,18 @@ const Products = () => {
           filterState.winter,
           filterByPrice(
             filterState.sortByPrice,
-            dataAfterPriceRange(filterState.priceRange, productsState.productsData)
+            dataAfterPriceRange(
+              filterState.priceRange,
+              productsState.productsData
+            )
           )
         )
       )
     )
   );
-// console.log(dataWithoutSearch)
+
   const finalData = filterBySearch(filterState.searchInput, dataWithoutSearch);
-//   console.log(finalData)
+
   return (
     <>
       <Navbar />

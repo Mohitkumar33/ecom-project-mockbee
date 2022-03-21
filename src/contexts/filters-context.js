@@ -58,6 +58,6 @@ const FilterProvider = ({ children }) => {
   );
 };
 
-const useFilters =()=> useContext(filterContext);
+const useFilters = () => useContext(filterContext);
 
 export { FilterProvider, useFilters };

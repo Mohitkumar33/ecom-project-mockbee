@@ -4,8 +4,10 @@ import { useProducts } from "../../contexts/products-context";
 import "./dealsOfTheDay.css";
 
 const DealsOfTheDay = () => {
-  const {productsState} = useProducts()
-  const maxDiscountProducts = productsState.productsData.filter((i) => i.discount >= 50);
+  const { productsState } = useProducts();
+  const maxDiscountProducts = productsState.productsData.filter(
+    (i) => i.discount >= 50
+  );
   return (
     <>
       <h2>Deals of the Day</h2>

@@ -49,7 +49,7 @@ const FilterProvider = ({ children }) => {
     sortByPrice: null,
     rating: null,
     discount: null,
-    searchInput: null,
+    searchInput: "",
   });
   return (
     <filterContext.Provider value={{ filterState, filterDispatch }}>

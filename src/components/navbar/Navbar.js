@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFilters } from "../../contexts/filters-context";
+import { useWishlist } from "../../contexts/wishlist-context";
 import "./navbar.css";
 
 const Navbar = () => {
   const { filterState, filterDispatch } = useFilters();
+  const {wishlistState} = useWishlist()
   return (
     <>
       <nav>
@@ -64,7 +66,7 @@ const Navbar = () => {
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                 />
               </svg>
-              <div className="marker-icon">0</div>
+              <div className="marker-icon">{wishlistState.wishlistItems.length}</div>
             </div>
           </Link>
           <Link to="/cart">

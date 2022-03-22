@@ -13,10 +13,12 @@ import {
   filterBySeason,
   filterBySearch,
 } from "../utilitites/index";
+import { useWishlist } from "../contexts/wishlist-context";
 
 const Products = () => {
-  const { productsState } = useProducts();
+  const { productsState, productsDispatch } = useProducts();
   const { filterState, filterDispatch } = useFilters();
+  const { wishlistDispatch } = useWishlist();
   const dataWithoutSearch = filterByDiscount(
     filterState.discount,
     filterByGender(
@@ -337,14 +339,35 @@ const Products = () => {
                   </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="card-icon-products"
+                    className={
+                      i.inWishlist
+                        ? "card-icon-products-red"
+                        : "card-icon-products"
+                    }
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    // onClick={() => {
-                    //   state.wishlist = state.wishlist.concat(i);
-                    // doInWishlist(i._id)
-                    // }}
+                    onClick={() => {
+                      !i.inWishlist
+                        ? (
+                            wishlistDispatch({
+                            type: "ADD_TO_WISHLIST",
+                            payload: i,
+                          }),
+                          productsDispatch({
+                            type: "SET_IN_WISHLIST",
+                            payload: i.temp_id,
+                          }))
+                        : (
+                            wishlistDispatch({
+                            type: "REMOVE_FROM_WISHLIST",
+                            payload: i,
+                          }),
+                          productsDispatch({
+                            type: "SET_IN_WISHLIST",
+                            payload: i.temp_id,
+                          }));
+                    }}
                   >
                     <path
                       strokeLinecap="round"

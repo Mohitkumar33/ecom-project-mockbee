@@ -17,7 +17,6 @@ import {
 const Products = () => {
   const { productsState } = useProducts();
   const { filterState, filterDispatch } = useFilters();
-  console.log(productsState.productsState);
   const dataWithoutSearch = filterByDiscount(
     filterState.discount,
     filterByGender(

@@ -1,0 +1,96 @@
+:root {
+    --primary-color: #808080;
+    --gray-light: #f0f0f0;
+    --button-blue-color: #4e94f0;
+    --red-marker-icon: #e64c4c;
+    --very-light-gray: #e2e0e0bd;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+
+/************main started*************/
+main {
+    background-color: var(--very-light-gray);
+    display: flex;
+    justify-content: center;
+    height: 88.4vh;
+}
+
+main label {
+    display: block;
+}
+
+.login-box {
+    width: 23.5rem;
+    height: 25.75rem;
+    padding: 3rem;
+    background-color: white;
+    margin-top: 4rem;
+    border-radius: 5px;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-top: 0px;
+}
+
+.row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: small;
+}
+
+.email-input,
+.password-input {
+    width: 100%;
+    padding: 8px 11px;
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 1rem;
+    border: 1px solid var(--button-blue-color);
+    background-color: var(--button-blue-color);
+    color: white;
+}
+
+.icon-new-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newaccount-icon {
+    height: 24px;
+    width: 24px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.label {
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 6px;
+}

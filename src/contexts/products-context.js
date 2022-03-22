@@ -7,6 +7,15 @@ const productsReducer = (productsState, productsAction) => {
   switch (productsAction.type) {
     case "SET_PRODUCTS":
       return { ...productsState, productsData: productsAction.payload };
+    case "SET_IN_WISHLIST":
+      return {
+        ...productsState,
+        productsData: productsState.productsData.map((product) =>
+          product.temp_id === productsAction.payload
+            ? { ...product, inWishlist: !product.inWishlist }
+            : { ...product }
+        ),
+      };
     default:
       return productsState;
   }

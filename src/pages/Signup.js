@@ -7,38 +7,38 @@ const Signup = () => {
     <>
     <Navbar/>
       <main>
-        <div class="signup-box">
+        <div className="signup-box">
           <h2>Signup</h2>
-          <label for="email-input" class="label">
+          <label htmlFor="email-input" className="label">
             Email address
           </label>
           <input
             type="text"
             placeholder="mohit@gmail.com"
-            class="email-input"
+            className="email-input"
           />
-          <label for="password-input" class="label">
+          <label htmlFor="password-input" className="label">
             Password
           </label>
           <input
             type="password"
             placeholder="************"
-            class="password-input"
+            className="password-input"
           />
 
-          <div class="row-1">
+          <div className="row-1">
             <label>
               <input type="checkbox" />I accept all Terms & Conditions
             </label>
           </div>
 
           <button>Create New Account</button>
-          <div class="icon-new-account">
+          <div className="icon-new-account">
             <p>Already have an account</p>
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="newaccount-icon"
+                className="newaccount-icon"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

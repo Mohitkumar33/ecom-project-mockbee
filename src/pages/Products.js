@@ -14,8 +14,11 @@ import {
   filterBySearch,
 } from "../utilitites/index";
 import { useWishlist } from "../contexts/wishlist-context";
+import { useState } from "react";
 
 const Products = () => {
+  const [openToast, setOpenToast] = useState(false);
+  const [openToastRemove, setOpenToastRemove] = useState(false);
   const { productsState, productsDispatch } = useProducts();
   const { filterState, filterDispatch } = useFilters();
   const { wishlistDispatch } = useWishlist();
@@ -299,6 +302,14 @@ const Products = () => {
                 <small>(Showing {finalData.length} products)</small>
               </span>
             </h3>
+
+            {openToast && (
+              <div className="toast-1">Item <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png"/>added from wishlist</div>
+            )}
+            {openToastRemove && (
+              <div className="toast-1">Item <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png"/>removed from wishlist</div>
+            )}
+
             <div className="listing-column">
               {finalData.map((i) => (
                 <div className="card-2" key={i._id}>
@@ -349,8 +360,7 @@ const Products = () => {
                     stroke="currentColor"
                     onClick={() => {
                       !i.inWishlist
-                        ? (
-                            wishlistDispatch({
+                        ? (wishlistDispatch({
                             type: "ADD_TO_WISHLIST",
                             payload: i,
                           }),
@@ -358,8 +368,7 @@ const Products = () => {
                             type: "SET_IN_WISHLIST",
                             payload: i.temp_id,
                           }))
-                        : (
-                            wishlistDispatch({
+                        : (wishlistDispatch({
                             type: "REMOVE_FROM_WISHLIST",
                             payload: i,
                           }),
@@ -367,6 +376,17 @@ const Products = () => {
                             type: "SET_IN_WISHLIST",
                             payload: i.temp_id,
                           }));
+                      if (!i.inWishlist) {
+                        setOpenToast(true);
+                        setTimeout(() => {
+                          setOpenToast(false);
+                        }, 1000);
+                      }else{
+                        setOpenToastRemove(true);
+                        setTimeout(() => {
+                          setOpenToastRemove(false);
+                        }, 1000);
+                      }
                     }}
                   >
                     <path

@@ -229,11 +229,15 @@ button:hover {
 /*************card end****************/
 .toast-1 {
   height: 40px;
-  width: 600px;
-  background-color: rgb(66, 66, 66);
+  width: 20%;
+  background-color: rgba(66, 66, 66, 0.925);
   color: white;
   border-radius: 5px;
   padding: 10px;
+  position: absolute;
+  z-index: 2;
+  bottom: 4rem;
+  left: 50%;
   /* position: fixed;
   bottom: 0; */
 }

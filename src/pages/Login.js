@@ -4,20 +4,23 @@ import "./login.css"
 import { useAuth } from "../contexts/auth-context";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate=useNavigate()
   const {setAuthState} = useAuth()
   const [email,setEmail]=useState("")
   const [password,setPassword] = useState("")
   // const {isAuth,userInfo} = authState
-  const callUserLogin = async (email,password)=>{
+  const callUserLogin = async (emailId,passw)=>{
     try{
     const {data} = await axios.post("/api/auth/login",{
-      email,password
+      email:emailId,password:passw
     })
     console.log(data)
     localStorage.setItem("token",data.encodedToken)
     setAuthState({isAuth:true,userInfo:data.user})
+    navigate('/products')
   }catch(error){
     console.log(error)
   }
@@ -38,7 +41,7 @@ const Login = () => {
                 </div>
                 <p><a href="#">Forgot your Password?</a></p>
             </div>
-          <button onClick={()=>callUserLogin}>Login</button>
+          <button onClick={()=>callUserLogin(email,password)}>Login</button>
             <div className="icon-new-account">
                 <p>Create New Account</p>
                 <span><svg xmlns="http://www.w3.org/2000/svg" className="newaccount-icon" fill="none" viewBox="0 0 24 24"

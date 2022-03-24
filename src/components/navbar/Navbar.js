@@ -44,9 +44,6 @@ const Navbar = () => {
           </svg>
         </div>
         <div className="nav-icons">
-          <Link to="/mock">
-                Mock
-              </Link>
           <Link to="/login">
             <button className="nav-login">Login</button>
           </Link>

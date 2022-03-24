@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
 import { useFilters } from "../../contexts/filters-context";
 import { useWishlist } from "../../contexts/wishlist-context";
+
 import "./navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { filterState, filterDispatch } = useFilters();
   const { wishlistState } = useWishlist();
+  const { authState, setAuthState } = useAuth();
+  const { isAuth, userInfo } = authState;
+  const logoutHandler = () => {
+    setAuthState({ isAuth: false, userInfo: null });
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <>
       <nav>
@@ -44,14 +54,27 @@ const Navbar = () => {
           </svg>
         </div>
         <div className="nav-icons">
-          <Link to="/mock">Mock</Link>
           <Link to="/login">
-            <button className="nav-login">Login</button>
+            {!isAuth ? (
+              <button className="nav-login">Login</button>
+            ) : (
+              <>
+                <button className="nav-login" onClick={logoutHandler}>
+                  Logout
+                </button>
+                <span>{`hello, ${userInfo.firstName}`}</span>
+              </>
+            )}
           </Link>
 
           <Link to="/signup">
-            <button className="nav-signup">Signup</button>
+            {!isAuth ? (
+              <button className="nav-signup">Signup</button>
+            ) : (
+              <span></span>
+            )}
           </Link>
+
           <Link to="/wishlist">
             <div className="nav-heart-icon">
               <svg

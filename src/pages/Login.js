@@ -20,7 +20,11 @@ const Login = () => {
       });
       console.log(data);
       localStorage.setItem("token", data.encodedToken);
-      setAuthState({ isAuth: true, userInfo: data.foundUser });
+      localStorage.setItem("userName", data.foundUser.firstName);
+      setAuthState({
+        isAuth: localStorage.token ? true : false,
+        userInfo: localStorage.userName ? localStorage.userName : null,
+      });
       navigate("/products");
     } catch (error) {
       console.log(error);

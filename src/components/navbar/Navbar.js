@@ -13,8 +13,10 @@ const Navbar = () => {
   const { authState, setAuthState } = useAuth();
   const { isAuth, userInfo } = authState;
   const logoutHandler = () => {
-    setAuthState({ isAuth: false, userInfo: null });
+    // setAuthState({ isAuth: false, userInfo: null });
     localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    setAuthState({ isAuth: false, userInfo: null });
     navigate("/login");
   };
   return (
@@ -54,26 +56,23 @@ const Navbar = () => {
           </svg>
         </div>
         <div className="nav-icons">
-          <Link to="/login">
-            {!isAuth ? (
+          {!isAuth ? (
+            <Link to="/login">
               <button className="nav-login">Login</button>
-            ) : (
-              <>
-                <button className="nav-login" onClick={logoutHandler}>
-                  Logout
-                </button>
-                <span>{`hello, ${userInfo.firstName}`}</span>
-              </>
-            )}
-          </Link>
-
-          <Link to="/signup">
-            {!isAuth ? (
+            </Link>
+          ) : (
+            <>
+              <button className="nav-login" onClick={logoutHandler}>
+                Logout
+              </button>
+              <span>{`hello, ${userInfo}`}</span>
+            </>
+          )}
+          {!isAuth && (
+            <Link to="/signup">
               <button className="nav-signup">Signup</button>
-            ) : (
-              <span></span>
-            )}
-          </Link>
+            </Link>
+          )}
 
           <Link to="/wishlist">
             <div className="nav-heart-icon">

@@ -1,22 +1,10 @@
 import {createContext,useContext,useState} from "react"
-// import { useReducer } from "react"
-// import { useContext } from "react/cjs/react.production.min"
 
 const authContext = createContext(null)
 
-// const authReducer = (authState,authAction)=>{
-//     switch(authAction.type){
-//         default:
-//             return authState
-//     }
-// }
-
-// const [authState,authDispatch] = useReducer(authReducer,{
-
-// })
 
 const AuthProvider =({children})=>{
-    const [authState,setAuthState] = useState({isAuth:false,userInfo:null})
+    const [authState,setAuthState] = useState({isAuth:localStorage.token?true:false,userInfo:localStorage.userName?localStorage.userName:null})
     return(
         <authContext.Provider value={{authState,setAuthState}}>
             {children}

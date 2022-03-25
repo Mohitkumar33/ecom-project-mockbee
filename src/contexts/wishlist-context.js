@@ -5,7 +5,6 @@ import { setWishList } from "../utilitites/wishlistUtils";
 
 const wishlistContext = createContext(null);
 const wishlistReducer = (wishlistState, wishlistAction) => {
-  // console.log(wishlistState)
   switch (wishlistAction.type) {
     case "SET_WISHLIST":
       return {
@@ -35,14 +34,13 @@ const WishlistProvider = ({ children }) => {
   });
   useEffect(() => {
     if (!isAuth) return;
-    // console.log("after return")
+
     (async () => {
       const data = await setWishList();
       console.log(data);
       console.log("set wishlist called");
       console.log(wishlistState.wishlistItems);
       wishlistDispatch({ type: "SET_WISHLIST", payload: data });
-      // console.log(typeof wishlistState.wishlistItems)
     })();
   }, []);
   return (

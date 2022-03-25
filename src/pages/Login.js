@@ -20,6 +20,7 @@ const Login = () => {
       console.log(data);
       localStorage.setItem("token", data.encodedToken);
       localStorage.setItem("userName", data.foundUser.firstName);
+      console.log(localStorage);
       setAuthState({
         isAuth: localStorage.token ? true : false,
         userInfo: localStorage.userName ? localStorage.userName : null,

@@ -8,9 +8,6 @@ import { useWishlist } from "../../contexts/wishlist-context";
 import "./navbar.css";
 
 const Navbar = () => {
-  // useEffect(() => {
-  //   const navigate = useNavigate();
-  // }, []);
   const navigate = useNavigate();
   const { filterState, filterDispatch } = useFilters();
   const { wishlistState } = useWishlist();

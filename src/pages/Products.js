@@ -17,7 +17,7 @@ import {
 import { useWishlist } from "../contexts/wishlist-context";
 import { useState } from "react";
 import { useAuth } from "../contexts/auth-context";
-import { addToCart, increaseDecreaseQty } from "../utilitites/cartUtilities";
+import { addToCart, removeFromCart } from "../utilitites/cartUtilities";
 import { useCart } from "../contexts/cart-context";
 
 const Products = () => {
@@ -378,8 +378,25 @@ const Products = () => {
                       </button>
                     </div>
                     <div>
-                      <button
-                        className="card-2-button-2"
+                      {cartItems.some((item) => item._id === i._id) ? (
+                        <button
+                          className="card-2-button-2"
+                          onClick={() => removeFromCart(i._id, cartDispatch)}
+                        >
+                          Remove From Cart
+                        </button>
+                      ) : (
+                        <button
+                          className="card-2-button-2"
+                          onClick={() => {
+                            addToCart(i, cartDispatch);
+                          }}
+                        >
+                          Add To Cart
+                        </button>
+                      )}
+                      {/* <button
+                        
                         onClick={() =>
                           isAuth
                             ? cartItems.some((item) => item._id === i._id)
@@ -393,7 +410,7 @@ const Products = () => {
                         }
                       >
                         Add To Cart
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <svg

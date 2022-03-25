@@ -4,6 +4,8 @@ import { Navbar } from "../components/navbar/Navbar";
 import { Footer } from "../components/footer/Footer";
 import { useFilters } from "../contexts/filters-context";
 import { useProducts } from "../contexts/products-context";
+import { addToWishlist, removeFromWishlist } from "../utilitites/wishlistUtils";
+
 import {
   filterByPrice,
   dataAfterPriceRange,
@@ -19,9 +21,10 @@ import { useState } from "react";
 const Products = () => {
   const [openToast, setOpenToast] = useState(false);
   const [openToastRemove, setOpenToastRemove] = useState(false);
-  const { productsState, productsDispatch } = useProducts();
+  const { productsState } = useProducts();
   const { filterState, filterDispatch } = useFilters();
-  const { wishlistDispatch } = useWishlist();
+  const { wishlistState, wishlistDispatch } = useWishlist();
+  const { wishlistItems } = wishlistState;
   const dataWithoutSearch = filterByDiscount(
     filterState.discount,
     filterByGender(
@@ -45,6 +48,24 @@ const Products = () => {
   );
 
   const finalData = filterBySearch(filterState.searchInput, dataWithoutSearch);
+
+  const handleAddToWishlist = (i) => {
+    console.log("Handle add to wishlist called ----- ", i);
+    addToWishlist(i, wishlistDispatch),
+      setOpenToast(true),
+      setTimeout(() => {
+        setOpenToast(false);
+      }, 1000);
+  };
+
+  const handleRemoveFromWishlist = (i) => {
+    console.log("Handle Remove from wishlist called ----- ", i);
+    removeFromWishlist(i.temp_id, wishlistDispatch),
+      setOpenToastRemove(true),
+      setTimeout(() => {
+        setOpenToastRemove(false);
+      }, 1000);
+  };
 
   return (
     <>
@@ -304,12 +325,11 @@ const Products = () => {
             </h3>
 
             {openToast && (
-              <div className="toast-1">Item <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png"/>added from wishlist</div>
+              <div className="toast-1">Item ✅ added from wishlist</div>
             )}
             {openToastRemove && (
-              <div className="toast-1">Item <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png"/>removed from wishlist</div>
+              <div className="toast-1">Item ✅ removed from wishlist</div>
             )}
-
             <div className="listing-column">
               {finalData.map((i) => (
                 <div className="card-2" key={i._id}>
@@ -348,10 +368,11 @@ const Products = () => {
                       <button className="card-2-button-2">Add To Cart</button>
                     </div>
                   </div>
+                  {/* {console.log(wishlistItems)} */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={
-                      i.inWishlist
+                      wishlistItems.some((item) => item.temp_id === i.temp_id)
                         ? "card-icon-products-red"
                         : "card-icon-products"
                     }
@@ -359,34 +380,9 @@ const Products = () => {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     onClick={() => {
-                      !i.inWishlist
-                        ? (wishlistDispatch({
-                            type: "ADD_TO_WISHLIST",
-                            payload: i,
-                          }),
-                          productsDispatch({
-                            type: "SET_IN_WISHLIST",
-                            payload: i.temp_id,
-                          }))
-                        : (wishlistDispatch({
-                            type: "REMOVE_FROM_WISHLIST",
-                            payload: i,
-                          }),
-                          productsDispatch({
-                            type: "SET_IN_WISHLIST",
-                            payload: i.temp_id,
-                          }));
-                      if (!i.inWishlist) {
-                        setOpenToast(true);
-                        setTimeout(() => {
-                          setOpenToast(false);
-                        }, 1000);
-                      }else{
-                        setOpenToastRemove(true);
-                        setTimeout(() => {
-                          setOpenToastRemove(false);
-                        }, 1000);
-                      }
+                      wishlistItems.some((item) => item.temp_id === i.temp_id)
+                        ? handleRemoveFromWishlist(i)
+                        : handleAddToWishlist(i);
                     }}
                   >
                     <path

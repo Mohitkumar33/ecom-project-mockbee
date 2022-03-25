@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const setWishList = async () => {
-  let items = null;
   try {
     const config = {
       headers: {
@@ -9,16 +8,14 @@ const setWishList = async () => {
       },
     };
     const { data } = await axios.get("/api/user/wishlist", config);
-    items = data.wishlist;
-    console.log(items)
+    console.log("set wishlist function called");
+    return data.wishlist;
   } catch (error) {
     console.error(error);
   }
-  return items;
 };
 
-const addToWishlist = async (product) => {
-  let items = null;
+const addToWishlist = async (product, wishlistDispatch) => {
   try {
     const config = {
       headers: {
@@ -30,15 +27,14 @@ const addToWishlist = async (product) => {
       { product },
       config
     );
-    items = data.wishlist;
+    console.log("thisis add towish list");
+    wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: data.wishlist });
   } catch (error) {
     console.error(error);
   }
-  return items;
 };
 
-const removeFromWishlist = async (id) => {
-  let items = null;
+const removeFromWishlist = async (id, wishlistDispatch) => {
   try {
     const config = {
       headers: {
@@ -46,11 +42,17 @@ const removeFromWishlist = async (id) => {
       },
     };
     const { data } = await axios.delete(`/api/user/wishlist/${id}`, config);
-    items = data.wishlist;
+    console.log("remove from wishlist called");
+    console.log("this is data after removed ", data);
+    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
   } catch (error) {
     console.error(error);
   }
-  return items;
 };
+// wishlistDispatch({
+//   type: "REMOVE_FROM_WISHLIST",
+//   payload: removeFromWishlist(id),
+// });
 
+// wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: addToWishlist(product) });
 export { setWishList, addToWishlist, removeFromWishlist };

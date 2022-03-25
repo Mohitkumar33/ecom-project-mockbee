@@ -19,6 +19,7 @@ const Navbar = () => {
     setAuthState({ isAuth: false, userInfo: null });
     navigate("/login");
   };
+  // console.log(wishlistState)
   return (
     <>
       <nav>

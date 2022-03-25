@@ -234,7 +234,7 @@ button:hover {
   color: white;
   border-radius: 5px;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   bottom: 4rem;
   left: 50%;

@@ -1,44 +1,52 @@
 import { createContext, useContext, useReducer } from "react";
 import { useEffect } from "react";
 import { useAuth } from "./auth-context";
-import {
-  setWishList,
-  addToWishlist,
-  removeFromWishlist,
-} from "../utilitites/wishlistUtils";
+import { setWishList } from "../utilitites/wishlistUtils";
 
 const wishlistContext = createContext(null);
 const wishlistReducer = (wishlistState, wishlistAction) => {
-  console.log(wishlistState)
+  // console.log(wishlistState)
   switch (wishlistAction.type) {
     case "SET_WISHLIST":
-      return{
-        ...wishlistState, wishlistItems:setWishList()
-      }
+      return {
+        ...wishlistState,
+        wishlistItems: wishlistAction.payload,
+      };
     case "ADD_TO_WISHLIST":
-      return{
-        ...wishlistState, wishlistItems:addToWishlist(wishlistAction.payload)
-      }
+      return {
+        ...wishlistState,
+        wishlistItems: wishlistAction.payload,
+      };
     case "REMOVE_FROM_WISHLIST":
-      return{
-        ...wishlistState, wishlistItems:removeFromWishlist(wishlistAction.payload)
-      }
+      return {
+        ...wishlistState,
+        wishlistItems: wishlistState.wishlistItems.filter(
+          (item) => item.temp_id !== wishlistAction.payload
+        ),
+      };
     default:
       return wishlistState;
   }
 };
 
 const WishlistProvider = ({ children }) => {
-  const {authState} = useAuth();
+  const { authState } = useAuth();
   const { isAuth } = authState;
   const [wishlistState, wishlistDispatch] = useReducer(wishlistReducer, {
     wishlistItems: [],
   });
   useEffect(() => {
     if (!isAuth) return;
-    console.log("after return")
-    wishlistDispatch({type:"SET_WISHLIST"})
-  },[]);
+    // console.log("after return")
+    (async () => {
+      const data = await setWishList();
+      console.log(data);
+      console.log("set wishlist called");
+      console.log(wishlistState.wishlistItems);
+      wishlistDispatch({ type: "SET_WISHLIST", payload: data });
+      // console.log(typeof wishlistState.wishlistItems)
+    })();
+  }, []);
   return (
     <wishlistContext.Provider value={{ wishlistState, wishlistDispatch }}>
       {children}

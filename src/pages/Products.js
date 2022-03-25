@@ -381,7 +381,11 @@ const Products = () => {
                       {cartItems.some((item) => item._id === i._id) ? (
                         <button
                           className="card-2-button-2"
-                          onClick={() => removeFromCart(i._id, cartDispatch)}
+                          onClick={() =>
+                            isAuth
+                              ? removeFromCart(i._id, cartDispatch)
+                              : navigate("/login")
+                          }
                         >
                           Remove From Cart
                         </button>
@@ -389,7 +393,9 @@ const Products = () => {
                         <button
                           className="card-2-button-2"
                           onClick={() => {
-                            addToCart(i, cartDispatch);
+                            isAuth
+                              ? addToCart(i, cartDispatch)
+                              : navigate("/login");
                           }}
                         >
                           Add To Cart

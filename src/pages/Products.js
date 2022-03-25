@@ -60,7 +60,7 @@ const Products = () => {
 
   const handleRemoveFromWishlist = (i) => {
     console.log("Handle Remove from wishlist called ----- ", i);
-    removeFromWishlist(i.temp_id, wishlistDispatch),
+    removeFromWishlist(i._id, wishlistDispatch),
       setOpenToastRemove(true),
       setTimeout(() => {
         setOpenToastRemove(false);

@@ -44,15 +44,10 @@ const removeFromWishlist = async (id, wishlistDispatch) => {
     const { data } = await axios.delete(`/api/user/wishlist/${id}`, config);
     console.log("remove from wishlist called");
     console.log("this is data after removed ", data);
-    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: data.wishlist });
   } catch (error) {
     console.error(error);
   }
 };
-// wishlistDispatch({
-//   type: "REMOVE_FROM_WISHLIST",
-//   payload: removeFromWishlist(id),
-// });
 
-// wishlistDispatch({ type: "ADD_TO_WISHLIST", payload: addToWishlist(product) });
 export { setWishList, addToWishlist, removeFromWishlist };

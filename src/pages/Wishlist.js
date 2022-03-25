@@ -3,24 +3,21 @@ import { useState } from "react";
 import { Footer } from "../components/footer/Footer";
 import { Navbar } from "../components/navbar/Navbar";
 import { useWishlist } from "../contexts/wishlist-context";
+import { removeFromWishlist } from "../utilitites/wishlistUtils";
 import "./wishlist.css";
 
 const Wishlist = () => {
   const [openToastRemove, setOpenToastRemove] = useState(false);
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { wishlistItems } = wishlistState;
-  console.log(wishlistItems)
+  console.log(wishlistItems);
   return (
     <>
       <Navbar />
       <div className="wishlist">
         <h2 className="main-h2">My Wishlist({wishlistItems.length})</h2>
         {openToastRemove && (
-          <div className="toast-1">
-            Item{" "}
-            ✅
-            removed from wishlist
-          </div>
+          <div className="toast-1">Item ✅ removed from wishlist</div>
         )}
         <div className="all-products">
           {wishlistItems.map((item) => {
@@ -37,16 +34,12 @@ const Wishlist = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   onClick={() => {
-                    wishlistDispatch({
-                      type: "REMOVE_FROM_WISHLIST",
-                      payload: item.temp_id,
-                    }),
+                    removeFromWishlist(item._id, wishlistDispatch),
                       setOpenToastRemove(true),
                       setTimeout(() => {
                         setOpenToastRemove(false);
                       }, 1000);
-                    }
-                  }
+                  }}
                 >
                   <path
                     strokeLinecap="round"

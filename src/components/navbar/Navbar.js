@@ -13,13 +13,11 @@ const Navbar = () => {
   const { authState, setAuthState } = useAuth();
   const { isAuth, userInfo } = authState;
   const logoutHandler = () => {
-    // setAuthState({ isAuth: false, userInfo: null });
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
     setAuthState({ isAuth: false, userInfo: null });
     navigate("/login");
   };
-  // console.log(wishlistState)
   return (
     <>
       <nav>

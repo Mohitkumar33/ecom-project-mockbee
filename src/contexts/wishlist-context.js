@@ -37,9 +37,6 @@ const WishlistProvider = ({ children }) => {
 
     (async () => {
       const data = await setWishList();
-      console.log(data);
-      console.log("set wishlist called");
-      console.log(wishlistState.wishlistItems);
       wishlistDispatch({ type: "SET_WISHLIST", payload: data });
     })();
   }, []);

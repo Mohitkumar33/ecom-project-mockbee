@@ -53,7 +53,6 @@ const Products = () => {
   const finalData = filterBySearch(filterState.searchInput, dataWithoutSearch);
 
   const handleAddToWishlist = (i) => {
-    console.log("Handle add to wishlist called ----- ", i);
     addToWishlist(i, wishlistDispatch),
       setOpenToast(true),
       setTimeout(() => {
@@ -62,7 +61,6 @@ const Products = () => {
   };
 
   const handleRemoveFromWishlist = (i) => {
-    console.log("Handle Remove from wishlist called ----- ", i);
     removeFromWishlist(i._id, wishlistDispatch),
       setOpenToastRemove(true),
       setTimeout(() => {

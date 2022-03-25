@@ -1,10 +1,9 @@
 import React from "react";
 import "./products.css";
-import { Navbar } from "../components/navbar/Navbar";
-import { Footer } from "../components/footer/Footer";
 import { useFilters } from "../contexts/filters-context";
 import { useProducts } from "../contexts/products-context";
 import { addToWishlist, removeFromWishlist } from "../utilitites/wishlistUtils";
+import { useNavigate } from "react-router-dom";
 
 import {
   filterByPrice,
@@ -17,8 +16,12 @@ import {
 } from "../utilitites/index";
 import { useWishlist } from "../contexts/wishlist-context";
 import { useState } from "react";
+import { useAuth } from "../contexts/auth-context";
 
 const Products = () => {
+  const navigate = useNavigate();
+  const { authState } = useAuth();
+  const { isAuth } = authState;
   const [openToast, setOpenToast] = useState(false);
   const [openToastRemove, setOpenToastRemove] = useState(false);
   const { productsState } = useProducts();
@@ -69,7 +72,6 @@ const Products = () => {
 
   return (
     <>
-      <Navbar />
       <div className="filters">
         {/* <!-- left side filter started --> */}
         <aside className="sort-filter">
@@ -380,9 +382,13 @@ const Products = () => {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     onClick={() => {
-                      wishlistItems.some((item) => item.temp_id === i.temp_id)
-                        ? handleRemoveFromWishlist(i)
-                        : handleAddToWishlist(i);
+                      isAuth
+                        ? wishlistItems.some(
+                            (item) => item.temp_id === i.temp_id
+                          )
+                          ? handleRemoveFromWishlist(i)
+                          : handleAddToWishlist(i)
+                        : navigate("/login");
                     }}
                   >
                     <path
@@ -398,7 +404,6 @@ const Products = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

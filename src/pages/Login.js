@@ -1,5 +1,4 @@
 import React from "react";
-import { Navbar } from "../components/navbar/Navbar";
 import "./login.css";
 import { useAuth } from "../contexts/auth-context";
 import axios from "axios";
@@ -32,7 +31,6 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar />
       <main>
         <div className="login-box">
           <h2>Login</h2>

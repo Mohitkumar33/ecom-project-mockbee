@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Footer } from "../components/footer/Footer";
-import { Navbar } from "../components/navbar/Navbar";
 import { useWishlist } from "../contexts/wishlist-context";
 import { removeFromWishlist } from "../utilitites/wishlistUtils";
 import "./wishlist.css";
@@ -13,7 +11,6 @@ const Wishlist = () => {
   console.log(wishlistItems);
   return (
     <>
-      <Navbar />
       <div className="wishlist">
         <h2 className="main-h2">My Wishlist({wishlistItems.length})</h2>
         {openToastRemove && (
@@ -53,7 +50,6 @@ const Wishlist = () => {
           })}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react/cjs/react.production.min";
 import { useAuth } from "../../contexts/auth-context";
 import { useFilters } from "../../contexts/filters-context";
 import { useWishlist } from "../../contexts/wishlist-context";
@@ -7,6 +8,9 @@ import { useWishlist } from "../../contexts/wishlist-context";
 import "./navbar.css";
 
 const Navbar = () => {
+  // useEffect(() => {
+  //   const navigate = useNavigate();
+  // }, []);
   const navigate = useNavigate();
   const { filterState, filterDispatch } = useFilters();
   const { wishlistState } = useWishlist();
@@ -72,27 +76,28 @@ const Navbar = () => {
               <button className="nav-signup">Signup</button>
             </Link>
           )}
-
-          <Link to="/wishlist">
-            <div className="nav-heart-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-              <div className="marker-icon">
-                {wishlistState.wishlistItems.length}
+          {isAuth && (
+            <Link to="/wishlist">
+              <div className="nav-heart-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+                <div className="marker-icon">
+                  {wishlistState.wishlistItems.length}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          )}
           <Link to="/cart">
             <div className="nav-cart-icon">
               <svg

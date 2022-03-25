@@ -1,12 +1,9 @@
 import React from "react";
-import { Footer } from "../components/footer/Footer";
-import { Navbar } from "../components/navbar/Navbar";
 import "./cart.css";
 
 const Cart = () => {
   return (
     <>
-      <Navbar />
       <div className="cart-page">
         <h2 className="main-h2">My cart(2)</h2>
         <div className="main-cart">
@@ -64,7 +61,9 @@ const Cart = () => {
                   <button className="card-2-button-1">Go to Cart</button>
                 </div>
                 <div>
-                  <button className="card-2-button-2">Remove from Wishlist</button>
+                  <button className="card-2-button-2">
+                    Remove from Wishlist
+                  </button>
                 </div>
               </div>
             </div>
@@ -100,7 +99,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

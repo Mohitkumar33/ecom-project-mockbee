@@ -18,6 +18,7 @@ const DealsOfTheDay = () => {
               <img src={i.image} alt={i.brand} />
               <p>{i.name}</p>
               <p>₹{i.mrp - (i.mrp * i.discount) / 100}</p>
+              <p>{i.discount}% off</p>
               <button>Go to Cart</button>
             </div>
           ))}

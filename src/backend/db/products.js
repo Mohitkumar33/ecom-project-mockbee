@@ -18,8 +18,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -33,8 +31,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -48,8 +44,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -63,8 +57,6 @@ export const products = [
     discount: 40,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -78,8 +70,6 @@ export const products = [
     discount: 30,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -93,8 +83,6 @@ export const products = [
     discount: 20,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -108,8 +96,6 @@ export const products = [
     discount: 10,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -123,8 +109,6 @@ export const products = [
     discount: 0,
     finalPrice: 0,
     rating:3,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -138,8 +122,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -153,8 +135,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -168,8 +148,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -183,8 +161,6 @@ export const products = [
     discount: 40,
     finalPrice: 0,
     rating:3,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -198,8 +174,6 @@ export const products = [
     discount: 30,
     finalPrice: 0,
     rating:3,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -213,8 +187,6 @@ export const products = [
     discount: 20,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -228,8 +200,6 @@ export const products = [
     discount: 10,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -243,8 +213,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -258,8 +226,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -273,8 +239,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -288,8 +252,6 @@ export const products = [
     discount: 40,
     finalPrice: 0,
     rating:3,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -303,8 +265,6 @@ export const products = [
     discount: 30,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -318,8 +278,6 @@ export const products = [
     discount: 20,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -333,8 +291,6 @@ export const products = [
     discount: 10,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -348,8 +304,6 @@ export const products = [
     discount: 0,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -363,8 +317,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:3,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -378,8 +330,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -393,8 +343,6 @@ export const products = [
     discount: 50,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -408,8 +356,6 @@ export const products = [
     discount: 40,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -423,8 +369,6 @@ export const products = [
     discount: 30,
     finalPrice: 0,
     rating:2,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -438,8 +382,6 @@ export const products = [
     discount: 20,
     finalPrice: 0,
     rating:1,
-    inCart:false,
-    inWishlist:false,
   },
   {
     _id: uuid(),
@@ -453,7 +395,5 @@ export const products = [
     discount: 10,
     finalPrice: 0,
     rating:4,
-    inCart:false,
-    inWishlist:false,
   },
 ];

@@ -1,35 +1,20 @@
 import React from "react";
 import { useState } from "react";
-import { Footer } from "../components/footer/Footer";
-import { Navbar } from "../components/navbar/Navbar";
-import { useProducts } from "../contexts/products-context";
 import { useWishlist } from "../contexts/wishlist-context";
+import { removeFromWishlist } from "../utilitites/wishlistUtils";
 import "./wishlist.css";
 
 const Wishlist = () => {
-  const [openToast, setOpenToast] = useState(false);
   const [openToastRemove, setOpenToastRemove] = useState(false);
-  const { productsDispatch } = useProducts();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { wishlistItems } = wishlistState;
+  console.log(wishlistItems);
   return (
     <>
-      <Navbar />
       <div className="wishlist">
         <h2 className="main-h2">My Wishlist({wishlistItems.length})</h2>
-        {openToast && (
-          <div className="toast-1">
-            Item{" "}
-            <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png" />
-            added from wishlist
-          </div>
-        )}
         {openToastRemove && (
-          <div className="toast-1">
-            Item{" "}
-            <img src="https://img.icons8.com/emoji/20/000000/check-mark-button-emoji.png" />
-            removed from wishlist
-          </div>
+          <div className="toast-1">Item ✅ removed from wishlist</div>
         )}
         <div className="all-products">
           {wishlistItems.map((item) => {
@@ -46,34 +31,11 @@ const Wishlist = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   onClick={() => {
-                    item.inWishlist
-                      ? (wishlistDispatch({
-                          type: "ADD_TO_WISHLIST",
-                          payload: item,
-                        }),
-                        productsDispatch({
-                          type: "SET_IN_WISHLIST",
-                          payload: item.temp_id,
-                        }))
-                      : (wishlistDispatch({
-                          type: "REMOVE_FROM_WISHLIST",
-                          payload: item,
-                        }),
-                        productsDispatch({
-                          type: "SET_IN_WISHLIST",
-                          payload: item.temp_id,
-                        }));
-                    if (item.inWishlist) {
-                      setOpenToast(true);
-                      setTimeout(() => {
-                        setOpenToast(false);
-                      }, 1000);
-                    } else {
-                      setOpenToastRemove(true);
+                    removeFromWishlist(item._id, wishlistDispatch),
+                      setOpenToastRemove(true),
                       setTimeout(() => {
                         setOpenToastRemove(false);
                       }, 1000);
-                    }
                   }}
                 >
                   <path
@@ -88,7 +50,6 @@ const Wishlist = () => {
           })}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

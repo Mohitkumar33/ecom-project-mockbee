@@ -1,21 +1,25 @@
 import { createContext, useContext, useReducer } from "react";
+import { useEffect } from "react";
+import { useAuth } from "./auth-context";
+import { setWishList } from "../utilitites/wishlistUtils";
 
 const wishlistContext = createContext(null);
 const wishlistReducer = (wishlistState, wishlistAction) => {
-  const { wishlistItems } = wishlistState;
   switch (wishlistAction.type) {
-    case "ADD_TO_WISHLIST":
-      // return{...wishlistState,wishlistItems:wishlistItems.concat(wishlistAction.payload)}
+    case "SET_WISHLIST":
       return {
         ...wishlistState,
-        wishlistItems: [...wishlistItems, wishlistAction.payload],
+        wishlistItems: wishlistAction.payload,
+      };
+    case "ADD_TO_WISHLIST":
+      return {
+        ...wishlistState,
+        wishlistItems: wishlistAction.payload,
       };
     case "REMOVE_FROM_WISHLIST":
       return {
         ...wishlistState,
-        wishlistItems: wishlistItems.filter(
-          (item) => item.temp_id !== wishlistAction.payload.temp_id
-        ),
+        wishlistItems: wishlistAction.payload,
       };
     default:
       return wishlistState;
@@ -23,9 +27,19 @@ const wishlistReducer = (wishlistState, wishlistAction) => {
 };
 
 const WishlistProvider = ({ children }) => {
+  const { authState } = useAuth();
+  const { isAuth } = authState;
   const [wishlistState, wishlistDispatch] = useReducer(wishlistReducer, {
     wishlistItems: [],
   });
+  useEffect(() => {
+    if (!isAuth) return;
+
+    (async () => {
+      const data = await setWishList();
+      wishlistDispatch({ type: "SET_WISHLIST", payload: data });
+    })();
+  }, []);
   return (
     <wishlistContext.Provider value={{ wishlistState, wishlistDispatch }}>
       {children}

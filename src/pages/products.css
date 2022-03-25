@@ -122,18 +122,18 @@ button:hover {
 } */
 
 .card-icon-products-red {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    top: 6px;
-    right: 6px;
-    background-color: rgba(233, 229, 229, 0.822);
-    box-sizing: content-box;
-    padding: 5px;
-    border-radius: 50%;
-    fill: red;
-    color: red;
-  }
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  top: 6px;
+  right: 6px;
+  background-color: rgba(233, 229, 229, 0.822);
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 50%;
+  fill: red;
+  color: red;
+}
 
 .card-2-col-2 {
   display: flex;
@@ -234,10 +234,8 @@ button:hover {
   color: white;
   border-radius: 5px;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   bottom: 4rem;
   left: 50%;
-  /* position: fixed;
-  bottom: 0; */
 }

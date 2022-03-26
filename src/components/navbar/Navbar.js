@@ -32,6 +32,10 @@ const Navbar = () => {
             </h2>
           </i>
         </div>
+        <Link to="/products">
+          <button className="products-page">Products</button>
+        </Link>
+
         <div className="input-field">
           <input
             type="text"

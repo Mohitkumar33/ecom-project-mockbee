@@ -1,12 +1,63 @@
+import axios from "axios";
 import React from "react";
-import "./signup.css"
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
+import "./signup.css";
 
 const Signup = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const { setAuthState } = useAuth();
+  const navigate = useNavigate();
+  const signupFunction = async (firstName, lastName, emailId, password) => {
+    try {
+      const userDetails = {
+        email: emailId,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      };
+      const { data } = await axios.post("/api/auth/signup", userDetails);
+      console.log(data);
+      localStorage.setItem("token", data.encodedToken);
+      localStorage.setItem("userName", data.createdUser.firstName);
+      setAuthState({
+        isAuth: localStorage.token ? true : false,
+        userInfo: localStorage.userName ? localStorage.userName : null,
+      });
+      navigate("/products");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <main>
         <div className="signup-box">
           <h2>Signup</h2>
+          <label htmlFor="firstName" className="label">
+            First Name
+          </label>
+          <input
+            type="text"
+            placeholder="first name"
+            className="email-input"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <label htmlFor="lastName" className="label">
+            Last Name
+          </label>
+          <input
+            type="text"
+            placeholder="last name"
+            className="email-input"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
           <label htmlFor="email-input" className="label">
             Email address
           </label>
@@ -14,6 +65,8 @@ const Signup = () => {
             type="text"
             placeholder="mohit@gmail.com"
             className="email-input"
+            value={emailId}
+            onChange={(e) => setEmailId(e.target.value)}
           />
           <label htmlFor="password-input" className="label">
             Password
@@ -22,6 +75,8 @@ const Signup = () => {
             type="password"
             placeholder="************"
             className="password-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="row-1">
@@ -30,9 +85,18 @@ const Signup = () => {
             </label>
           </div>
 
-          <button>Create New Account</button>
+          <button
+            onClick={() =>
+              signupFunction(firstName, lastName, emailId, password)
+            }
+          >
+            Create New Account
+          </button>
           <div className="icon-new-account">
-            <p>Already have an account</p>
+            <Link to="/login">
+              {" "}
+              <p>Already have an account</p>
+            </Link>
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

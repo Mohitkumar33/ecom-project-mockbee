@@ -17,8 +17,12 @@ import {
 import { useWishlist } from "../contexts/wishlist-context";
 import { useState } from "react";
 import { useAuth } from "../contexts/auth-context";
+import { addToCart, removeFromCart } from "../utilitites/cartUtilities";
+import { useCart } from "../contexts/cart-context";
 
 const Products = () => {
+  const { cartState, cartDispatch } = useCart();
+  const { cartItems } = cartState;
   const navigate = useNavigate();
   const { authState } = useAuth();
   const { isAuth } = authState;
@@ -341,9 +345,7 @@ const Products = () => {
                     <small className="brand-style">by {i.brand}</small>
                     <p className="discount-price">
                       ₹{i.mrp - (i.mrp * i.discount) / 100}{" "}
-                      <span className="original-price">
-                        ₹{i.mrp} <span className="line-on-price"></span>
-                      </span>
+                      <span className="original-price">₹{i.mrp}</span>
                     </p>
                     <p className="discount-percent">{i.discount}% off</p>
                     <div className="rating">
@@ -362,13 +364,61 @@ const Products = () => {
                       </svg>
                     </div>
                     <div>
-                      <button className="card-2-button-1">Buy Now</button>
+                      <button
+                        className="card-2-button-1"
+                        onClick={() =>
+                          isAuth
+                            ? cartItems.some((item) => item._id === i._id)
+                              ? navigate("/cart")
+                              : (addToCart(i, cartDispatch), navigate("/cart"))
+                            : navigate("/login")
+                        }
+                      >
+                        Buy Now
+                      </button>
                     </div>
                     <div>
-                      <button className="card-2-button-2">Add To Cart</button>
+                      {cartItems.some((item) => item._id === i._id) ? (
+                        <button
+                          className="card-2-button-2"
+                          onClick={() =>
+                            isAuth
+                              ? removeFromCart(i._id, cartDispatch)
+                              : navigate("/login")
+                          }
+                        >
+                          Remove From Cart
+                        </button>
+                      ) : (
+                        <button
+                          className="card-2-button-2"
+                          onClick={() => {
+                            isAuth
+                              ? addToCart(i, cartDispatch)
+                              : navigate("/login");
+                          }}
+                        >
+                          Add To Cart
+                        </button>
+                      )}
+                      {/* <button
+                        
+                        onClick={() =>
+                          isAuth
+                            ? cartItems.some((item) => item._id === i._id)
+                              ? increaseDecreaseQty(
+                                  i._id,
+                                  cartDispatch,
+                                  "increment"
+                                )
+                              : addToCart(i, cartDispatch)
+                            : navigate("/login")
+                        }
+                      >
+                        Add To Cart
+                      </button> */}
                     </div>
                   </div>
-                  {/* {console.log(wishlistItems)} */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={

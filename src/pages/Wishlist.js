@@ -23,7 +23,15 @@ const Wishlist = () => {
                 <img src={item.image} alt={item.brand} />
                 <p>{item.name}</p>
                 <p>₹{item.mrp - (item.mrp * item.discount) / 100}</p>
-                <button>Add to Cart</button>
+                <button
+                  onClick={() =>
+                    cartItems.some((item) => item._id === i._id)
+                      ? increaseDecreaseQty(i._id, cartDispatch, "increment")
+                      : addToCart(i, cartDispatch)
+                  }
+                >
+                  Add to Cart
+                </button>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="card-icon"

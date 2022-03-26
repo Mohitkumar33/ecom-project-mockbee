@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react/cjs/react.production.min";
 import { useAuth } from "../../contexts/auth-context";
+import { useCart } from "../../contexts/cart-context";
 import { useFilters } from "../../contexts/filters-context";
 import { useWishlist } from "../../contexts/wishlist-context";
 
@@ -13,6 +13,7 @@ const Navbar = () => {
   const { wishlistState } = useWishlist();
   const { authState, setAuthState } = useAuth();
   const { isAuth, userInfo } = authState;
+  const { cartState } = useCart();
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
@@ -95,24 +96,26 @@ const Navbar = () => {
               </div>
             </Link>
           )}
-          <Link to="/cart">
-            <div className="nav-cart-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <div className="marker-icon">0</div>
-            </div>
-          </Link>
+          {isAuth && (
+            <Link to="/cart">
+              <div className="nav-cart-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                <div className="marker-icon">{cartState.cartItems.length}</div>
+              </div>
+            </Link>
+          )}
         </div>
       </nav>
     </>

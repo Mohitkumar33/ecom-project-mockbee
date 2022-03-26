@@ -26,7 +26,6 @@ const Cart = () => {
   deliveryCharges = (finalMrp - totalDiscount) * (8 / 100);
   return (
     <>
-      {/* {console.log(cartItems)} */}
       <div className="cart-page">
         <h2 className="main-h2">My cart({cartItems.length})</h2>
         <div className="main-cart">

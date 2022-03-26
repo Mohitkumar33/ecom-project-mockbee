@@ -401,22 +401,6 @@ const Products = () => {
                           Add To Cart
                         </button>
                       )}
-                      {/* <button
-                        
-                        onClick={() =>
-                          isAuth
-                            ? cartItems.some((item) => item._id === i._id)
-                              ? increaseDecreaseQty(
-                                  i._id,
-                                  cartDispatch,
-                                  "increment"
-                                )
-                              : addToCart(i, cartDispatch)
-                            : navigate("/login")
-                        }
-                      >
-                        Add To Cart
-                      </button> */}
                     </div>
                   </div>
                   <svg

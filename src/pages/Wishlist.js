@@ -1,10 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { useCart } from "../contexts/cart-context";
 import { useWishlist } from "../contexts/wishlist-context";
 import { removeFromWishlist } from "../utilitites/wishlistUtils";
+import { addToCart } from "../utilitites/cartUtilities";
+
 import "./wishlist.css";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
+  const navigate = useNavigate();
+  const { cartState, cartDispatch } = useCart();
+  const { cartItems } = cartState;
   const [openToastRemove, setOpenToastRemove] = useState(false);
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { wishlistItems } = wishlistState;
@@ -25,9 +32,14 @@ const Wishlist = () => {
                 <p>₹{item.mrp - (item.mrp * item.discount) / 100}</p>
                 <button
                   onClick={() =>
-                    cartItems.some((item) => item._id === i._id)
-                      ? increaseDecreaseQty(i._id, cartDispatch, "increment")
-                      : addToCart(i, cartDispatch)
+                    cartItems.some((i) => i._id === item._id)
+                      ? (increaseDecreaseQty(
+                          item._id,
+                          cartDispatch,
+                          "increment"
+                        ),
+                        navigate("/cart"))
+                      : (addToCart(item, cartDispatch), navigate("/cart"))
                   }
                 >
                   Add to Cart

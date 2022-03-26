@@ -21,7 +21,6 @@ const Signup = () => {
         lastName: lastName,
       };
       const { data } = await axios.post("/api/auth/signup", userDetails);
-      console.log(data);
       localStorage.setItem("token", data.encodedToken);
       localStorage.setItem("userName", data.createdUser.firstName);
       setAuthState({

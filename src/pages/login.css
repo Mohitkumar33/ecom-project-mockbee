@@ -92,3 +92,8 @@ a {
   padding-top: 15px;
   padding-bottom: 6px;
 }
+
+#test-login-button {
+  color: var(--button-blue-color);
+  background-color: white;
+}

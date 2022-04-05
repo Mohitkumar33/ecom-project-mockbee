@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useCart } from "../contexts/cart-context";
 import { useWishlist } from "../contexts/wishlist-context";
 import { removeFromWishlist } from "../utilitites/wishlistUtils";
-import { addToCart } from "../utilitites/cartUtilities";
-
+import { addToCart, increaseDecreaseQty } from "../utilitites/cartUtilities";
 import "./wishlist.css";
 import { useNavigate } from "react-router-dom";
 

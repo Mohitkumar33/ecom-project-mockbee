@@ -8,7 +8,7 @@ import { addToCart } from "../../utilitites/cartUtilities";
 import "./dealsOfTheDay.css";
 const DealsOfTheDay = () => {
   const navigate = useNavigate();
-  const { authState, setAuthState } = useAuth();
+  const { authState } = useAuth();
   const { isAuth } = authState;
   const { cartState, cartDispatch } = useCart();
   const { cartItems } = cartState;
@@ -31,7 +31,7 @@ const DealsOfTheDay = () => {
             />
             <p>{i.name}</p>
             <p>₹{i.mrp - (i.mrp * i.discount) / 100}</p>
-            <p>{i.discount}% off</p>
+            <p className="percentage-off">{i.discount}% off</p>
 
             <button
               onClick={() =>

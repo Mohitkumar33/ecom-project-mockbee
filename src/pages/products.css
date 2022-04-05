@@ -226,6 +226,10 @@ button:hover {
   fill: yellow;
 }
 
+.card-2:hover {
+  cursor: pointer;
+}
+
 /*************card end****************/
 .toast-1 {
   height: 40px;

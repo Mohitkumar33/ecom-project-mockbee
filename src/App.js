@@ -3,6 +3,7 @@ import { Footer } from "./components/footer/Footer";
 import { Navbar } from "./components/navbar/Navbar";
 import { MockAPI } from "./mockman";
 import { Cart } from "./pages/Cart";
+import { Error } from "./pages/error page/error";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Products } from "./pages/Products";
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<MockAPI />} />
         <Route path="/product/:productId" element={<SingleProduct />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </div>

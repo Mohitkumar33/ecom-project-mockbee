@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Products } from "./pages/Products";
 import { Signup } from "./pages/Signup";
+import { SingleProduct } from "./pages/SingleProductDisplay";
 import { Wishlist } from "./pages/Wishlist";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<MockAPI />} />
+        <Route path="/product/:productId" element={<SingleProduct />} />
       </Routes>
       <Footer />
     </div>

@@ -2,7 +2,7 @@
 
 ## [Live Link](https://fastcom.vercel.app/)
 
-_fastcom_ is a fully functional and responsive Ecommerce application which has different pages That is home, My products, Single product page, My Cart, My wishlist, Login and signup page.
+_fastcom_ is a fully functional Ecommerce application which has different pages That is home, My products, Single product page, My Cart, My wishlist, Login and signup page.
 
 ## How to run the project locally
 **Step 1**. Firstly fork the repository.  
@@ -96,3 +96,12 @@ I can see a logout button from where I can log out from the app on the header na
 ## E-Commerce Backend
 
 This folder contains the Mock Backend created for E-Commerce App. It contains different API end-points and database configuration for building E-Commerce; so that you can focus on building Frontend.
+
+## Things I want to improve/explore further
+- Adding pagination
+- Adding a payment gateway like Razorpay
+
+## Connect With Me
+- Twitter – [@aggarwal_mohit_](https://twitter.com/aggarwal_mohit_)
+- LinkedIn – [/mohit-kumar-aggarwal/](https://www.linkedin.com/in/mohit-kumar-aggarwal/)
+- Other Links – [/mohitkumar.in/](https://mohitkumar.in/)

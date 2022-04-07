@@ -1,0 +1,8 @@
+.single-product {
+  height: 30rem;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

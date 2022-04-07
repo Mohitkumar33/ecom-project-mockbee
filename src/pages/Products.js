@@ -3,7 +3,7 @@ import "./products.css";
 import { useFilters } from "../contexts/filters-context";
 import { useProducts } from "../contexts/products-context";
 import { addToWishlist, removeFromWishlist } from "../utilitites/wishlistUtils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   filterByPrice,
@@ -338,31 +338,36 @@ const Products = () => {
               {finalData.map((i) => (
                 <div className="card-2" key={i._id}>
                   <div className="card-2-col-1">
-                    <img src={i.image} alt={i.name} />
+                    <Link to={`/product/${i._id}`}>
+                      <img src={i.image} alt={i.name} />
+                    </Link>
                   </div>
+
                   <div className="card-2-col-2">
-                    <h3>{i.name}</h3>
-                    <small className="brand-style">by {i.brand}</small>
-                    <p className="discount-price">
-                      ₹{i.mrp - (i.mrp * i.discount) / 100}{" "}
-                      <span className="original-price">₹{i.mrp}</span>
-                    </p>
-                    <p className="discount-percent">{i.discount}% off</p>
-                    <div className="rating">
-                      <p>{i.rating}.0</p>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="star-rating"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                        ></path>
-                      </svg>
-                    </div>
+                    <Link to={`/product/${i._id}`}>
+                      <h3>{i.name}</h3>
+                      <small className="brand-style">by {i.brand}</small>
+                      <p className="discount-price">
+                        ₹{i.mrp - (i.mrp * i.discount) / 100}{" "}
+                        <span className="original-price">₹{i.mrp}</span>
+                      </p>
+                      <p className="discount-percent">{i.discount}% off</p>
+                      <div className="rating">
+                        <p>{i.rating}.0</p>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="star-rating"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </Link>
                     <div>
                       <button
                         className="card-2-button-1"

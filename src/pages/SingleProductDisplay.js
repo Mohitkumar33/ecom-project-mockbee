@@ -13,6 +13,7 @@ const SingleProduct = () => {
   const navigate = useNavigate();
   const { authState } = useAuth();
   const { isAuth } = authState;
+  const [loader, setLoader] = useState(false);
   const { wishlistState, wishlistDispatch } = useWishlist();
   const [openToast, setOpenToast] = useState(false);
   const [openToastRemove, setOpenToastRemove] = useState(false);
@@ -36,19 +37,26 @@ const SingleProduct = () => {
   };
 
   useEffect(() => {
-    (async (productId) => {
-      console.log("this is produc id", productId);
+    (async () => {
+      // as product id is in parent so no need of putting it in arguments due to closures
       try {
+        setLoader(true);
         const { data } = await axios.get(`/api/products/${productId}`);
-        console.log("this is single product data", data.product);
+        setLoader(false);
         setProduct(data.product);
       } catch (error) {
         console.error(error);
       }
-    })(productId);
+    })();
   }, []);
   return (
     <>
+      {loader && (
+        <img
+          className="loading-image"
+          src="https://res.cloudinary.com/dbfzfqfhl/image/upload/v1648755213/ecom%20item%20images/video%20library%20data/loading_vja82z.gif"
+        />
+      )}
       {openToast && <div className="toast-1">Item ✅ added from wishlist</div>}
       {openToastRemove && (
         <div className="toast-1">Item ✅ removed from wishlist</div>

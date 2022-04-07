@@ -84,8 +84,7 @@ Add the item to the cart
 If the cart already contains that item, it's only increasing the quantity.
 
 ## Sign-up Page
-I can see a sign-up page from where I can sign-up using my email, first name, last name, password & confirm password.
-I can see a hide-show icon button that shows or hides my password.
+I can see a sign-up page from where I can sign-up using my email, first name, last name and password.
 
 ## Login Page
 I can see a login page from where I can log in using my email & password.

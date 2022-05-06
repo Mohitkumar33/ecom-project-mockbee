@@ -3,10 +3,13 @@ import "./login.css";
 import { useAuth } from "../contexts/auth-context";
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  let location = useLocation();
+  // console.log(location);
+  let from = location.state?.from?.pathname || "/";
   const { setAuthState } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +25,7 @@ const Login = () => {
         isAuth: localStorage.token ? true : false,
         userInfo: localStorage.userName ? localStorage.userName : null,
       });
-      navigate("/products");
+      navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { addToWishlist, removeFromWishlist } from "../utilitites/wishlistUtils";
@@ -20,6 +20,7 @@ const SingleProduct = () => {
   const { wishlistItems } = wishlistState;
   const { productId } = useParams();
   const [i, setProduct] = useState(null);
+  let location = useLocation();
   const handleAddToWishlist = (i) => {
     addToWishlist(i, wishlistDispatch),
       setOpenToast(true),
@@ -143,7 +144,7 @@ const SingleProduct = () => {
                   ? wishlistItems.some((item) => item.temp_id === i.temp_id)
                     ? handleRemoveFromWishlist(i)
                     : handleAddToWishlist(i)
-                  : navigate("/login");
+                  : navigate("/login", { state: { from: location } });
               }}
             >
               <path

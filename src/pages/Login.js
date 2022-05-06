@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   let location = useLocation();
-  // console.log(location);
+  console.log(location);
   let from = location.state?.from?.pathname || "/";
   const { setAuthState } = useAuth();
   const [email, setEmail] = useState("");
